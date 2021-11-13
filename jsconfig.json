@@ -2,7 +2,9 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths":{
-            "@/example/*": ["ex/exm/*"]
+            "@/example/*": ["ex/exm/*"],
+            "@utils/*": ["utils/*"],
+            "@styles/*": ["styles/*"]
         }
     }
 }
