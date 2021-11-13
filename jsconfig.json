@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths":{
+            "@/example/*": ["ex/exm/*"]
+        }
+    }
+}
