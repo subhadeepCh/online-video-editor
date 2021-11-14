@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
 import DemoSegment from "components/demoSegment/DemoSegment";
-import FeatureInfo from "components/featureInfo/featureInfo";
+import FeatureInfo from "components/featureInfo/FeatureInfo";
 import Guide from "components/guide/Guide";
 import Jumbotron from "components/jumbotron/Jumbotron";
 import Navbar from "components/navbar/Navbar";
