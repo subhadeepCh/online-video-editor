@@ -1,7 +1,7 @@
-import React from "react";
+import { Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
-import { Typography } from "@mui/material";
+import React from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {

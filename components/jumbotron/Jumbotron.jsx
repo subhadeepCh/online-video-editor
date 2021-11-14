@@ -1,14 +1,14 @@
-import React from "react";
-import { makeStyles } from "@mui/styles";
-import { Typography, Button } from "@mui/material";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { Button, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
+import { makeStyles } from "@mui/styles";
+import React from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: "10rem",
-    marginBottom: "5rem"
+    marginBottom: "5rem",
   },
   header: {
     fontWeight: 700,
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   addCircleIcon: {
     fontSize: "2rem",

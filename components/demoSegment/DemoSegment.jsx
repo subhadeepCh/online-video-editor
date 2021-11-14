@@ -1,10 +1,10 @@
 import { Typography } from "@mui/material";
-import React from "react";
-import { makeStyles } from "@mui/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
+import { makeStyles } from "@mui/styles";
 import Image from "next/image";
 import demoBackground from "public/demo.png";
+import React from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {

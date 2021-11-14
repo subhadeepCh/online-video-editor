@@ -1,14 +1,14 @@
-import React from "react";
+import LanguageIcon from "@mui/icons-material/Language";
+import MovieIcon from "@mui/icons-material/Movie";
+import SecurityIcon from "@mui/icons-material/Security";
+import SettingsIcon from "@mui/icons-material/Settings";
+import SpeedIcon from "@mui/icons-material/Speed";
+import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
-import featureData from "./featureData";
-import SpeedIcon from "@mui/icons-material/Speed";
-import SecurityIcon from "@mui/icons-material/Security";
-import MovieIcon from "@mui/icons-material/Movie";
-import SettingsIcon from "@mui/icons-material/Settings";
-import StarOutlineIcon from "@mui/icons-material/StarOutline";
-import LanguageIcon from "@mui/icons-material/Language";
 import Card from "components/card/Card";
+import React from "react";
+import featureData from "./featureData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,25 +16,21 @@ const useStyles = makeStyles((theme) => ({
   },
   icons: {
     fontSize: "3rem",
-  }
+  },
 }));
 
 const FeatureInfo = () => {
   const classes = useStyles();
   const icons = [
-    <SpeedIcon className={classes.icons} />,
-    <SecurityIcon className={classes.icons} />,
-    <MovieIcon className={classes.icons} />,
-    <SettingsIcon className={classes.icons} />,
-    <StarOutlineIcon className={classes.icons} />,
-    <LanguageIcon className={classes.icons} />,
+    <SpeedIcon key={1} className={classes.icons} />,
+    <SecurityIcon key={2} className={classes.icons} />,
+    <MovieIcon key={3} className={classes.icons} />,
+    <SettingsIcon key={4} className={classes.icons} />,
+    <StarOutlineIcon key={5} className={classes.icons} />,
+    <LanguageIcon key={6} className={classes.icons} />,
   ];
   return (
-    <Grid
-      container
-      spacing={4}
-      className={classes.root}
-    >
+    <Grid container spacing={4} className={classes.root}>
       {featureData.map((data, key) => (
         <Grid
           key={key}

@@ -1,13 +1,13 @@
-import * as React from "react";
+import MenuIcon from "@mui/icons-material/Menu";
+import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
-import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
+import * as React from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     color: theme.palette.secondary.light2,
     marginRight: "0.2rem",
-    fontSize: "2rem"
+    fontSize: "2rem",
   },
 }));
 

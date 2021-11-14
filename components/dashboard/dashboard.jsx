@@ -11,16 +11,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     color: theme.palette.primary.main,
     width: "100%",
-    height: "100%"
+    height: "100%",
   },
   navbar: {
     width: "100%",
     position: "absolute",
     top: 0,
   },
-  container:{
-      padding: "2rem"
-  }
+  container: {
+    padding: "2rem",
+  },
 }));
 
 const Dashboard = () => {
@@ -28,20 +28,20 @@ const Dashboard = () => {
   return (
     <div className={classes.root}>
       <Navbar className={classes.navbar} />
-        <Grid container spacing={2} className={classes.container}>
-          <Grid item container xs={12}>
-            <Jumbotron />
-          </Grid>
-          <Grid item container xs={12}>
-            <FeatureInfo/>
-          </Grid>
-          <Grid item container xs={12}>
-            <DemoSegment/>
-          </Grid>
-          <Grid item container xs={12}>
-            <Guide/>
-          </Grid>
+      <Grid container spacing={2} className={classes.container}>
+        <Grid item container xs={12}>
+          <Jumbotron />
         </Grid>
+        <Grid item container xs={12}>
+          <FeatureInfo />
+        </Grid>
+        <Grid item container xs={12}>
+          <DemoSegment />
+        </Grid>
+        <Grid item container xs={12}>
+          <Guide />
+        </Grid>
+      </Grid>
     </div>
   );
 };
