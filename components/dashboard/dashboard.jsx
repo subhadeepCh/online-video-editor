@@ -1,8 +1,10 @@
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
+import DemoSegment from "components/demoSegment/DemoSegment";
+import FeatureInfo from "components/featureInfo/featureInfo";
+import Guide from "components/guide/Guide";
 import Jumbotron from "components/jumbotron/Jumbotron";
 import Navbar from "components/navbar/Navbar";
-import FeatureInfo from "components/featureInfo/featureInfo";
 import React from "react";
 
 const useStyles = makeStyles((theme) => ({
@@ -31,13 +33,13 @@ const Dashboard = () => {
             <Jumbotron />
           </Grid>
           <Grid item container xs={12}>
-            <Jumbotron />
-          </Grid>
-          <Grid item container xs={12}>
-            <Jumbotron />
-          </Grid>
-          <Grid item container xs={12}>
             <FeatureInfo/>
+          </Grid>
+          <Grid item container xs={12}>
+            <DemoSegment/>
+          </Grid>
+          <Grid item container xs={12}>
+            <Guide/>
           </Grid>
         </Grid>
     </div>

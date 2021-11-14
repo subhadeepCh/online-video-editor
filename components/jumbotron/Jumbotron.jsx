@@ -7,7 +7,8 @@ import Grid from "@mui/material/Grid";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: "7rem auto",
+    marginTop: "10rem",
+    marginBottom: "5rem"
   },
   header: {
     fontWeight: 700,
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 200,
   },
   fileButton: {
-    background: "red",
+    background: theme.palette.secondary.light,
     padding: "1rem",
     borderRadius: "0.5rem 0 0 0.5rem",
     width: "15rem",
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center"
   },
   addCircleIcon: {
     fontSize: "2rem",
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   dropDownButton: {
-    background: "red",
+    background: theme.palette.secondary.light,
     padding: "1rem",
     borderRadius: "0 0.5rem 0.5rem 0",
     width: "4rem",

@@ -7,11 +7,20 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { makeStyles } from "@mui/styles";
+import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.primary.light2,
+    backgroundColor: theme.palette.primary.light,
     color: theme.palette.primary.main,
+  },
+  signInButton: {
+    color: theme.palette.secondary.light,
+  },
+  logo: {
+    color: theme.palette.secondary.light2,
+    marginRight: "0.2rem",
+    fontSize: "2rem"
   },
 }));
 
@@ -33,6 +42,7 @@ export default function Navbar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" className={classes.root}>
         <Toolbar>
+          <VideoLibraryIcon className={classes.logo} />
           <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
             Video Editor
           </Typography>
@@ -41,7 +51,11 @@ export default function Navbar() {
               <Button color="inherit">Tools</Button>
               <Button color="inherit">Pricing</Button>
               <Button color="inherit">Resources</Button>
-              <Button color="inherit" variant="outlined">
+              <Button
+                color="inherit"
+                variant="outlined"
+                className={classes.signInButton}
+              >
                 Sign In
               </Button>
             </>

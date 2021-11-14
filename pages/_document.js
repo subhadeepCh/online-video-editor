@@ -15,8 +15,12 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
+          <style>{`
+            #__next { height: 100% }
+          `}
+          </style>
         </Head>
-        <body>
+        <body style={theme.body}>
           <Main />
           <NextScript />
         </body>
@@ -59,7 +63,6 @@ MyDocument.getInitialProps = async (ctx) => {
 
   ctx.renderPage = () =>
     originalRenderPage({
-      // eslint-disable-next-line react/display-name
       enhanceApp: (App) => (props) => <App emotionCache={cache} {...props} />,
     });
 
