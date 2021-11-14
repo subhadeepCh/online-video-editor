@@ -2,7 +2,6 @@
   "extends": "next/core-web-vitals",
   "rules": {
     "semi": ["error", "always"],
-    "quotes": ["error", "double"],
-    "react/display-name": [{ "ignoreTranspilerName": true }]
+    "quotes": ["error", "double"]
   }
 }
