@@ -10,29 +10,51 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    backgroundColor: theme.palette.primary.light2,
     color: theme.palette.primary.main,
   },
 }));
 
 export default function Navbar() {
   const classes = useStyles();
+  const [isDesktop, setDesktop] = React.useState(true);
+
+  const updateMedia = () => {
+    setDesktop(window.innerWidth > 1450);
+  };
+
+  React.useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
+  });
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.root}>
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+            Video Editor
           </Typography>
-          <Button color="inherit">Login</Button>
+          {isDesktop ? (
+            <>
+              <Button color="inherit">Tools</Button>
+              <Button color="inherit">Pricing</Button>
+              <Button color="inherit">Resources</Button>
+              <Button color="inherit" variant="outlined">
+                Sign In
+              </Button>
+            </>
+          ) : (
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
