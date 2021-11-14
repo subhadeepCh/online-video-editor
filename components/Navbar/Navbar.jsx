@@ -17,20 +17,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar() {
   const classes = useStyles();
-  const [isDesktop, setDesktop] = React.useState(true);
+  const [isDesktop, setDesktop] = React.useState(false);
 
   const updateMedia = () => {
-    setDesktop(window.innerWidth > 1450);
+    setDesktop(window.innerWidth > 750);
   };
 
   React.useEffect(() => {
     window.addEventListener("resize", updateMedia);
+    if (window.innerWidth > 750) setDesktop(true);
     return () => window.removeEventListener("resize", updateMedia);
-  });
+  }, []);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" className={classes.root}>
+      <AppBar position="fixed" className={classes.root}>
         <Toolbar>
           <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
             Video Editor

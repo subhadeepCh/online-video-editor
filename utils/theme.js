@@ -7,6 +7,7 @@ const theme = createTheme({
     fontSize: "calc(0.75vw + 0.75vh)",
     margin: 0,
     padding: 0,
+    height: "100vh"
   },
   components: {
     // Name of the component
