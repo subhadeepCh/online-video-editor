@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.primary.light,
     color: theme.palette.primary.main,
+    zIndex: 20,
   },
   signInButton: {
     color: theme.palette.secondary.light,

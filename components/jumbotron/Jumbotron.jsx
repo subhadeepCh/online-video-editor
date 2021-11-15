@@ -3,6 +3,13 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Button, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
+import Uppy from "@uppy/core";
+import "@uppy/core/dist/style.css";
+import "@uppy/dashboard/dist/style.css";
+import GoogleDrive from "@uppy/google-drive";
+import { DashboardModal } from "@uppy/react";
+import Url from "@uppy/url";
+import XHRUpload from "@uppy/xhr-upload";
 import React from "react";
 
 const useStyles = makeStyles((theme) => ({
@@ -58,6 +65,59 @@ const useStyles = makeStyles((theme) => ({
 
 const Jumbotron = () => {
   const classes = useStyles();
+
+  const [modalOpen, setModalOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setModalOpen(true);
+  };
+
+  const handleClose = () => {
+    setModalOpen(false);
+  };
+
+  const uppy = new Uppy({
+    id: "uppy1",
+    autoProceed: true,
+    allowMultipleUploadBatches: true,
+    debug: true,
+    restrictions: {
+      maxFileSize: null,
+      minFileSize: null,
+      maxTotalFileSize: null,
+      maxNumberOfFiles: 1,
+      minNumberOfFiles: 1,
+      allowedFileTypes: ["video/*"],
+      requiredMetaFields: [],
+    },
+    infoTimeout: 5000,
+  });
+
+  uppy.use(XHRUpload, {
+    method: "post",
+    formData: true,
+    endpoint: "http://localhost:3000/api/hello",
+    fieldName: "file",
+    bundle: true,
+    headers: {
+      "Acess-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "OPTIONS, GET, POST, PATCH, PUT",
+      "Access-Control-Allow-Headers":
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization, Extra-Data",
+    },
+  });
+
+  uppy.use(Url, {
+    companionUrl: "instagram",
+  });
+
+  uppy.use(GoogleDrive, {
+    companionUrl: "https://companion.uppy.io/",
+  });
+
+  React.useEffect(() => {
+    return () => uppy.close();
+  });
   return (
     <Grid
       container
@@ -83,7 +143,12 @@ const Jumbotron = () => {
         </Typography>
       </Grid>
       <Grid item container xs={12} alignItems="center" justifyContent="center">
-        <Button variant="contained" size="large" className={classes.fileButton}>
+        <Button
+          variant="contained"
+          size="large"
+          className={classes.fileButton}
+          onClick={handleOpen}
+        >
           <span className={classes.verticalAlign}>
             <AddCircleIcon className={classes.addCircleIcon} /> Choose file
           </span>
@@ -98,6 +163,14 @@ const Jumbotron = () => {
           </span>
         </Button>
       </Grid>
+      <DashboardModal
+        uppy={uppy}
+        closeModalOnClickOutside
+        open={modalOpen}
+        onRequestClose={handleClose}
+        plugins={["Url", "GoogleDrive"]}
+        proudlyDisplayPoweredByUppy={false}
+      />
     </Grid>
   );
 };
