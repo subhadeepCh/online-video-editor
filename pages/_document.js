@@ -1,4 +1,5 @@
 import createEmotionServer from "@emotion/server/create-instance";
+import { ServerStyleSheets } from "@mui/styles";
 import Document, { Head, Html, Main, NextScript } from "next/document";
 import * as React from "react";
 import createEmotionCache from "../utils/createEmotionCache";
@@ -56,6 +57,7 @@ MyDocument.getInitialProps = async (ctx) => {
   // 4. page.render
 
   const originalRenderPage = ctx.renderPage;
+  const sheets = new ServerStyleSheets();
 
   // You can consider sharing the same emotion cache between all the SSR requests to speed up performance.
   // However, be aware that it can have global side effects.
@@ -65,7 +67,8 @@ MyDocument.getInitialProps = async (ctx) => {
   ctx.renderPage = () =>
     originalRenderPage({
       // eslint-disable-next-line react/display-name
-      enhanceApp: (App) => (props) => <App emotionCache={cache} {...props} />,
+      enhanceApp: (App) => (props) =>
+        sheets.collect(<App emotionCache={cache} {...props} />),
     });
 
   const initialProps = await Document.getInitialProps(ctx);
@@ -87,6 +90,7 @@ MyDocument.getInitialProps = async (ctx) => {
     styles: [
       ...React.Children.toArray(initialProps.styles),
       ...emotionStyleTags,
+      sheets.getStyleElement(),
     ],
   };
 };
