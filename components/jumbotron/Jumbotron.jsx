@@ -96,7 +96,7 @@ const Jumbotron = () => {
   uppy.use(XHRUpload, {
     method: "post",
     formData: true,
-    endpoint: "http://localhost:3000/api/hello",
+    endpoint: "/api/hello",
     fieldName: "file",
     bundle: true,
     headers: {
