@@ -13,7 +13,10 @@ export default function handler(req, res) {
       res.status(200).json({ name: "John Doe" });
       break;
     case "POST":
-      res.status(200).json({ success: true });
+      // Update or create data in your database
+      // eslint-disable-next-line no-console
+      console.log(req.body);
+      res.status(200).json({ success: true, dataRecieved: req.body });
       break;
     default:
       res.setHeader("Allow", ["GET", "PUT", "POST"]);

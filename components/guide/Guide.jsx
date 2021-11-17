@@ -5,7 +5,7 @@ import Card from "components/card/Card";
 import React from "react";
 import guideData from "./guideData";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((_theme) => ({
   root: {
     margin: "4rem auto",
   },

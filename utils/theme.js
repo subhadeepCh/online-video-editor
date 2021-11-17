@@ -7,7 +7,7 @@ const theme = createTheme({
     fontSize: "calc(0.75vw + 0.75vh)",
     margin: 0,
     padding: 0,
-    height: "calc(100% + 15rem)",
+    // height: "calc(100% + 15rem)",
   },
   body: {
     height: "100%",

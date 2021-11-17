@@ -6,7 +6,7 @@ import Image from "next/image";
 import demoBackground from "public/demo.png";
 import React from "react";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((_theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",

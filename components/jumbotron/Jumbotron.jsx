@@ -3,13 +3,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Button, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
-import Uppy from "@uppy/core";
-import "@uppy/core/dist/style.css";
-import "@uppy/dashboard/dist/style.css";
-import GoogleDrive from "@uppy/google-drive";
-import { DashboardModal } from "@uppy/react";
-import Url from "@uppy/url";
-import XHRUpload from "@uppy/xhr-upload";
+import UppyDashboardModal from "components/uppy/DashboardModal";
 import React from "react";
 
 const useStyles = makeStyles((theme) => ({
@@ -63,8 +57,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Jumbotron = () => {
+const Jumbotron = (props) => {
   const classes = useStyles();
+
+  const { handleShowEditor, handleFileDataChange } = props;
 
   const [modalOpen, setModalOpen] = React.useState(false);
 
@@ -76,48 +72,15 @@ const Jumbotron = () => {
     setModalOpen(false);
   };
 
-  const uppy = new Uppy({
-    id: "uppy1",
-    autoProceed: true,
-    allowMultipleUploadBatches: true,
-    debug: true,
-    restrictions: {
-      maxFileSize: null,
-      minFileSize: null,
-      maxTotalFileSize: null,
-      maxNumberOfFiles: 1,
-      minNumberOfFiles: 1,
-      allowedFileTypes: ["video/*"],
-      requiredMetaFields: [],
-    },
-    infoTimeout: 5000,
-  });
+  const onFileUploadSuccess = (file, response) => {
+    const httpStatus = response.status; // HTTP status code
+    const httpBody = response.body; // extracted response data
+    // eslint-disable-next-line no-console
+    console.log(httpStatus, httpBody);
+    handleShowEditor(true);
+    handleFileDataChange(file);
+  };
 
-  uppy.use(XHRUpload, {
-    method: "post",
-    formData: true,
-    endpoint: "/api/hello",
-    fieldName: "file",
-    bundle: true,
-    headers: {
-      "Acess-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "OPTIONS, GET, POST, PATCH, PUT",
-      "Access-Control-Allow-Headers":
-        "Origin, X-Requested-With, Content-Type, Accept, Authorization, Extra-Data",
-    },
-  });
-
-  uppy.use(Url, {
-    companionUrl: "instagram",
-  });
-
-  uppy.use(GoogleDrive, {
-    companionUrl: "https://companion.uppy.io/",
-  });
-
-  React.useEffect(() => {
-    return () => uppy.close();
-  });
   return (
     <Grid
       container
@@ -163,13 +126,13 @@ const Jumbotron = () => {
           </span>
         </Button>
       </Grid>
-      <DashboardModal
-        uppy={uppy}
-        closeModalOnClickOutside
-        open={modalOpen}
-        onRequestClose={handleClose}
-        plugins={["Url", "GoogleDrive"]}
-        proudlyDisplayPoweredByUppy={false}
+      <UppyDashboardModal
+        modalOpen={modalOpen}
+        handleClose={handleClose}
+        onFileUploadSuccess={onFileUploadSuccess}
+        endpoint="/api/hello"
+        allowedFileTypes={["video/*"]}
+        id="modal1"
       />
     </Grid>
   );

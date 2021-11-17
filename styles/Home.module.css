@@ -2,6 +2,11 @@
   background-image: url("../public/background.svg");
   height: 100%;
   background-repeat: no-repeat;
+  overflow-x: hidden;
+}
+
+.containerEditor {
+  height: 100%;
 }
 
 .main {

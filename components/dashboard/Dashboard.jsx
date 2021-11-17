@@ -23,14 +23,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const classes = useStyles();
+  const { handleShowEditor, handleFileDataChange } = props;
+
   return (
     <div className={classes.root}>
       <Navbar className={classes.navbar} />
       <Grid container spacing={2} className={classes.container}>
         <Grid item container xs={12}>
-          <Jumbotron />
+          <Jumbotron
+            handleShowEditor={handleShowEditor}
+            handleFileDataChange={handleFileDataChange}
+          />
         </Grid>
         <Grid item container xs={12}>
           <FeatureInfo />

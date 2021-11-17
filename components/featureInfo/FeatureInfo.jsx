@@ -10,7 +10,7 @@ import Card from "components/card/Card";
 import React from "react";
 import featureData from "./featureData";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((_theme) => ({
   root: {
     margin: "4rem auto",
   },
