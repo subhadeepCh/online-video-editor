@@ -19,7 +19,7 @@ const UppyDashboardModal = (props) => {
   const uppy = new Uppy({
     id: id,
     autoProceed: true,
-    allowMultipleUploadBatches: true,
+    allowMultipleUploadBatches: false,
     debug: true,
     restrictions: {
       maxFileSize: null,

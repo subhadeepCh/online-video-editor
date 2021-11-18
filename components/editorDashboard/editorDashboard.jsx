@@ -3,11 +3,17 @@ import AddIcon from "@mui/icons-material/Add";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ClearIcon from "@mui/icons-material/Clear";
 import {
-  Button, createTheme, MenuItem,
-  OutlinedInput, Select, Slider, ThemeProvider
+  Button,
+  createTheme,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  Slider,
+  ThemeProvider,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
+import styles from "components/editorDashboard/editorDashboard.styles";
 import UppyDashboardModal from "components/uppy/DashboardModal";
 import Image from "next/image";
 import Promise from "promise";
@@ -15,176 +21,7 @@ import React from "react";
 import ReactPlayer from "react-player";
 
 const useStyles = makeStyles((theme) => ({
-  "@global": {
-    "*::-webkit-scrollbar": {
-      width: "0.2rem",
-    },
-    "*::-webkit-scrollbar-thumb": {
-      backgroundColor: "#767678",
-      outline: "1px solid #767678",
-      borderRadius: "0.5rem",
-    },
-  },
-  root: {
-    width: "100%",
-    height: "100vh",
-    overflow: "hidden",
-  },
-  container: {
-    width: "100%",
-    height: "100%",
-  },
-  player: {
-    backgroundColor: "rgb(21,21,25)",
-  },
-  utility: {
-    backgroundColor: "rgb(32,32,36)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  timeline: {
-    backgroundColor: "rgb(32,32,36)",
-  },
-  gridRoot: {
-    padding: 0,
-    margin: 0,
-  },
-  playerDiv: {
-    height: "50vh",
-    width: "100%",
-    padding: "1rem 3rem 1rem 1rem",
-    display: "flex",
-  },
-  playerDivResponsive: {
-    height: "20vh",
-    width: "100%",
-    padding: "1rem 3rem 1rem 1rem",
-    display: "flex",
-  },
-  backButtonIcon: {
-    color: "rgb(91,91,94)",
-    "&:hover": {
-      color: "white",
-    },
-  },
-  timelineSection: {
-    backgroundColor: "rgb(44,44,49)",
-    width: "100%",
-    height: "12vw",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  loader: {
-    color: "white",
-  },
-  fileButton: {
-    background: "rgb(44,44,49)",
-    borderRadius: "0.5rem",
-    fontSize: "0.8rem",
-    width: "15rem",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  verticalAlign: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  addIcon: {
-    fontSize: "1.5rem",
-    marginRight: "0.3rem",
-  },
-  verticalLine: {
-    width: "0.1rem",
-    height: "100%",
-    position: "absolute",
-    zIndex: 30,
-    backgroundColor: "white",
-    margin: 0,
-    transitionDuration: "1s",
-  },
-  footer: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexDirection: "row",
-    padding: "0 2rem 0 2rem",
-  },
-  timeLineComponent: {
-    position: "relative",
-    display: "flex",
-    flexDirection: "column",
-  },
-  audio: {
-    width: "100%",
-    height: "2vw",
-    backgroundImage: "url(/sound.gif)",
-    backgroundSize: "2vw 2vw",
-    backgroundRepeat: "repeat-x",
-  },
-  exportButton: {
-    background: theme.palette.secondary.light,
-    fontSize: "1rem",
-  },
-  fileExtension: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "2vw",
-    whiteSpace: "nowrap",
-    color: "#767678",
-  },
-  formatText: {
-    marginRight: "2rem",
-  },
-  outlinedSelector: {
-    height: "2.5rem",
-    background: "#767678",
-  },
-  editorConfig: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    padding: "0 3rem 0 3rem",
-  },
-  sliderRoot: {
-    width: "100%",
-  },
-  utilitySection: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  fileDetails: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    background: "rgb(21,21,25)",
-    width: "100%",
-    borderRadius: "0.3rem",
-    padding: "0.5rem",
-    color: "white",
-    marginBottom: "1rem",
-  },
-  clearAudio: {
-    color: "#767678",
-    "&:hover": {
-      cursor: "pointer",
-    },
-  },
+  ...styles(theme),
 }));
 
 const muiTheme = createTheme({});
@@ -222,6 +59,7 @@ const EditorDashboard = (props) => {
     },
   };
 
+  /**handler for export button click event */
   const handleExport = async () => {
     const response = await fetch("/api/result", {
       method: "POST",
@@ -247,23 +85,28 @@ const EditorDashboard = (props) => {
     setAudioObject(null);
   };
 
+  /**handler for Uppy Dashboard Modal Open*/
   const handleOpen = () => {
     setModalOpen(true);
     setAudioObject(null);
   };
 
+  /**handler for Uppy Dashboard modal close */
   const handleClose = () => {
     setModalOpen(false);
   };
 
+  /**handler to set extension type for export */
   const handleSetExtension = (event) => {
     setExtension(event.target.value);
   };
 
+  /**handler to change video volume */
   const handleVideoVolumeChange = (event) => {
     setVideoVolume(event.target.value);
   };
 
+  /**handler to change audio volume */
   const handleAudioVolumeChange = (event) => {
     setAudioVolume(event.target.value);
     if (audioObject) {
@@ -273,12 +116,14 @@ const EditorDashboard = (props) => {
     }
   };
 
+  /**handler to delete audio file */
   const handleClearAudio = () => {
     audioObject?.pause();
     setAudioObject(null);
     handleAudioDataChange(null);
   };
 
+  /**handler after file upload success */
   const onFileUploadSuccess = React.useMemo(
     () => (file) => {
       handleAudioDataChange(file);
@@ -288,16 +133,19 @@ const EditorDashboard = (props) => {
     [handleAudioDataChange]
   );
 
+  /**handler for event listner on changing viewport size */
   const updateMedia = () => {
     setDesktop(window.innerWidth > 750);
     setwindowWidth(window.innerWidth / 11);
     setwindowHeight(window.innerWidth / 11 - 10);
   };
 
+  /**callback handler to describe video seek progress */
   const updateVideoProgress = (event) => {
     setProgress(event?.played);
   };
 
+  /**callback listener for video on play   */
   const onPlay = React.useMemo(
     () => () => {
       audioObject?.play();
@@ -305,12 +153,21 @@ const EditorDashboard = (props) => {
     [audioObject]
   );
 
+  /**callback listener for video on pause   */
   const onPause = React.useMemo(
     () => () => {
       audioObject?.pause();
     },
     [audioObject]
   );
+
+  /**handler for back button click   */
+  const handleBackButtonClick = () => {
+    handleShowEditor(false);
+    handleFileDataChange(null);
+    handleAudioDataChange(null);
+    setAudioObject(null);
+  };
 
   React.useEffect(() => {
     window.addEventListener("resize", updateMedia);
@@ -323,13 +180,6 @@ const EditorDashboard = (props) => {
   React.useEffect(() => {
     setModalOpen(false);
   }, [audioData]);
-
-  const handleBackButtonClick = () => {
-    handleShowEditor(false);
-    handleFileDataChange(null);
-    handleAudioDataChange(null);
-    setAudioObject(null);
-  };
 
   React.useEffect(() => {
     setwindowWidth(window.innerWidth / 11);
@@ -593,7 +443,7 @@ const EditorDashboard = (props) => {
         <Grid item container xs={12} md={3.7} className={classes.utility}>
           {utilitySection()}
         </Grid>
-        <Grid container xs={12} className={classes.timeline}>
+        <Grid container className={classes.timeline}>
           {timelineSection()}
           {footerSection()}
         </Grid>

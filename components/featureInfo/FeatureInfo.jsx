@@ -17,6 +17,9 @@ const useStyles = makeStyles((_theme) => ({
   icons: {
     fontSize: "3rem",
   },
+  gridItem:{
+    paddingLeft: "0 !important"
+  }
 }));
 
 const FeatureInfo = () => {
@@ -40,6 +43,7 @@ const FeatureInfo = () => {
           md={4}
           alignItems="center"
           justify="center"
+          classes={{item: classes.gridItem}}
         >
           <Card
             data={data}
