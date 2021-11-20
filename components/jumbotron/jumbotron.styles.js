@@ -1,5 +1,7 @@
 const styles = (theme) => ({
   root: {
+    marginTop: "10rem",
+    marginBottom: "9rem"
   },
   header: {
     fontWeight: 700,

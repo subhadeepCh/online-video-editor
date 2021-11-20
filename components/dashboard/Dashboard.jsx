@@ -12,10 +12,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     color: theme.palette.primary.main,
     width: "100%",
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
+    height: "100%",
   },
   navbar: {
     width: "100%",
@@ -33,10 +30,21 @@ const Dashboard = (props) => {
 
   return (
     <div className={classes.root}>
-      <Jumbotron
-        handleShowEditor={handleShowEditor}
-        handleFileDataChange={handleFileDataChange}
-      />
+      <Grid container spacing={2} className={classes.container}>
+        <Grid item container xs={12}>
+          <Jumbotron
+            handleShowEditor={handleShowEditor}
+            handleFileDataChange={handleFileDataChange}
+          />
+        </Grid>
+        <Grid item container xs={12}>
+        </Grid>
+        <Grid item container xs={12}>
+          <DemoSegment />
+        </Grid>
+        <Grid item container xs={12}>
+        </Grid>
+      </Grid>
     </div>
   );
 };
