@@ -1,6 +1,7 @@
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
 import DemoSegment from "components/demoSegment/DemoSegment";
+// eslint-disable-next-line no-unused-vars
 import FeatureInfo from "components/featureInfo/FeatureInfo";
 import Guide from "components/guide/Guide";
 import Jumbotron from "components/jumbotron/Jumbotron";
@@ -38,7 +39,6 @@ const Dashboard = (props) => {
           />
         </Grid>
         <Grid item container xs={12}>
-          <FeatureInfo />
         </Grid>
         <Grid item container xs={12}>
           <DemoSegment />

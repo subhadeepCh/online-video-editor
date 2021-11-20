@@ -46,6 +46,8 @@ const EditorDashboard = (props) => {
   const [extension, setExtension] = React.useState("Keep Format");
   const [videoVolume, setVideoVolume] = React.useState(100);
   const [audioVolume, setAudioVolume] = React.useState(100);
+  const [startAudio, setStartAudio] = React.useState(0);
+  const [endAudio, setEndAudio] = React.useState(-1);
 
   const MenuProps = {
     PaperProps: {
@@ -70,13 +72,15 @@ const EditorDashboard = (props) => {
         audioVolume: audioVolume,
         videoVolume: videoVolume,
         extension: extension,
+        audioStart: startAudio,
+        endAudio: endAudio
       }),
     });
 
     const content = await response.json();
 
     alert(
-      `Configuration Sent to Server :\nAudioVolume: ${content?.dataRecieved?.audioVolume}\nVideo Volume: ${content?.dataRecieved?.videoVolume}\nExtension: ${content?.dataRecieved?.extension}`
+      `Configuration Sent to Server :\nAudioVolume: ${content?.dataRecieved?.audioVolume}\nVideo Volume: ${content?.dataRecieved?.videoVolume}\nExtension: ${content?.dataRecieved?.extension}\nAudio Start: ${content?.dataRecieved?.audioStart}\nAudio End: ${content?.dataRecieved?.endAudio}`
     );
 
     handleShowEditor(false);
@@ -167,6 +171,20 @@ const EditorDashboard = (props) => {
     handleFileDataChange(null);
     handleAudioDataChange(null);
     setAudioObject(null);
+  };
+
+  /** handler for audio start*/
+  const handleAudioStart = (event) =>{
+    setStartAudio(event.target.value);
+  };
+
+  /** handler for audio start*/
+  const handleAudioEnd = (event) =>{
+    if(event.target.value < startAudio){
+      setEndAudio(startAudio);
+    }else{
+    setEndAudio(event.target.value);
+    }
   };
 
   React.useEffect(() => {
@@ -274,8 +292,8 @@ const EditorDashboard = (props) => {
               />
             </div>
             <div className={classes.dataSettings}>
-              <div></div>
-              <div></div>
+              <input className={classes.input} onChange={handleAudioStart} placeholder="Start (ms)"/>
+              <input className={classes.input} onChange={handleAudioEnd} placeholder="End (ms)"/>
             </div>
             <div className={classes.sliderRoot}>
               <span style={{ color: "#767678" }}> Video Sound Volume</span>

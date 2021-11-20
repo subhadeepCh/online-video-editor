@@ -170,6 +170,26 @@ const styles = (theme) => ({
       cursor: "pointer",
     },
   },
+  dataSettings: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "1.5rem",
+    width: "100%"
+  },
+  input:{
+    width: "48%",
+    background: "none",
+    border: "0.1rem solid #767678",
+    color: "#767678",
+    padding: "0.8rem",
+    outline: "none",
+    borderRadius: "0.5rem",
+    "&:focus":{
+      border: "0.1rem solid rgb(50,145,255)"
+    }
+  }
 });
 
 export default styles;
